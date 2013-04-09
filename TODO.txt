@@ -10,7 +10,9 @@ TODO:
 [ ] - Settings activity
 [ ] - 
 [ ] - 
-[ ] - 
+
+EXTRA FEATURES:
+[ ] - Add weighted categories to grade logging
 [ ] - 
 [ ] - 
 [ ] - 

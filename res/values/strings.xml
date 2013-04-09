@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">Classy</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="notes">Notes</string>
+    <string name="homework">Homework</string>
+    <string name="grades">Grades</string>
     <string name="menu_settings">Settings</string>
 
 </resources>
