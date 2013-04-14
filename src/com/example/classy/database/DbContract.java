@@ -78,6 +78,12 @@ public class DbContract {
 		public static final String ATTRIBUTE_CLASSID = "classId";
 		public static final String TYPE_CLASSID = "INTEGER";
 		public static final String OPTIONS_CLASSID = "NOT NULL";	
+		
+		public static final String TABLE_OPTIONS =
+				"FOREIGN KEY (" + ATTRIBUTE_NOTESID + ") REFERENCES " + Notes.TABLE_NAME 
+						+ "(" + Notes._ID + ")" + "\n" + 
+				"FOREIGN KEY (" + ATTRIBUTE_CLASSID + ") REFERENCES " + Classes.TABLE_NAME
+						+ "(" + Classes._ID + ")" ;
 	}
 	
 	public static abstract class AssignedIn implements BaseColumns {
@@ -90,6 +96,12 @@ public class DbContract {
 		public static final String ATTRIBUTE_CLASSID = "classId";
 		public static final String TYPE_CLASSID = "INTEGER";
 		public static final String OPTIONS_CLASSID = "NOT NULL";	
+		
+		public static final String TABLE_OPTIONS =
+				"FOREIGN KEY (" + ATTRIBUTE_HOMEWORKID + ") REFERENCES " + Homework.TABLE_NAME 
+						+ "(" + Homework._ID + ")" + "\n" + 
+				"FOREIGN KEY (" + ATTRIBUTE_CLASSID + ") REFERENCES " + Classes.TABLE_NAME
+						+ "(" + Classes._ID + ")" ;
 	}
 	
 	public static abstract class GivenIn implements BaseColumns {
@@ -102,5 +114,11 @@ public class DbContract {
 		public static final String ATTRIBUTE_CLASSID = "classId";
 		public static final String TYPE_CLASSID = "INTEGER";
 		public static final String OPTIONS_CLASSID = "NOT NULL";	
+		
+		public static final String TABLE_OPTIONS =
+				"FOREIGN KEY (" + ATTRIBUTE_GRADESID + ") REFERENCES " + Grades.TABLE_NAME 
+						+ "(" + Grades._ID + ")" + "\n" + 
+				"FOREIGN KEY (" + ATTRIBUTE_CLASSID + ") REFERENCES " + Classes.TABLE_NAME
+						+ "(" + Classes._ID + ")" ;
 	}
 }
