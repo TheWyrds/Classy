@@ -1,7 +1,7 @@
 package com.example.classy;
 
-import android.app.Fragment;
+import android.app.ListFragment;
 
-public class GradesFragment extends Fragment {
+public class GradesFragment extends ListFragment {
 
 }
