@@ -21,17 +21,16 @@ public class MainActivity extends Activity {
 	    // while it does so, preventing user interaction until the app can
 	    // be populated
 	    Db theDb = Db.getInstance(this);
-	    ProgressDialog progressDialog = new ProgressDialog(this);
+	  /*  ProgressDialog progressDialog = new ProgressDialog(this, ProgressDialog.STYLE_SPINNER);
 	    progressDialog.setIndeterminate(true);
 	    progressDialog.show();
 	    while(theDb.initialized() == false) {
 	    	continue;
 	    }
 	    progressDialog.dismiss();
-	    
+	  */  
 	    ActionBar actionBar = getActionBar();
-	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS | 
-	    							ActionBar.NAVIGATION_MODE_LIST );
+	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 	    // Notice that setContentView() is not used, because we use the root
 	    // android.R.id.content as the container for each fragment
