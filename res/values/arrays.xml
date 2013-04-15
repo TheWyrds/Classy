@@ -1,0 +1,31 @@
+<resources>
+    <string-array name="classes">
+        <item>Mobile</item>
+        <item>Number Theory</item>
+        <item>Databases</item>
+        <item>North Korea and You</item>
+    </string-array>
+    <string-array name="homeworkTitle">
+        <item>Project</item>
+        <item>Add 2+2</item>
+        <item>Nuclear Strategy Eval</item>
+  	</string-array>
+  	<string-array name="homeworkDueDate">
+        <item>Project</item>
+        <item>Add 2+2</item>
+        <item>Nuclear Strategy Eval</item>
+  	</string-array>
+  	<string-array name="homeworkClass">
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
+  	</string-array>
+    <string-array name="grades">
+        <item>Because Oct 31 == Dec 25!</item>
+        <item>\&quot;Java.\&quot;</item>
+	</string-array>
+    <string-array name="notes">
+        <item>Because Oct 31 == Dec 25!</item>
+        <item>\&quot;Java.\&quot;</item>
+	</string-array> 
+</resources>
