@@ -1,10 +1,5 @@
 package com.example.classy;
 
-<<<<<<< HEAD
-import android.app.ListFragment;
-
-public class HomeworkFragment extends ListFragment{
-=======
 import java.util.GregorianCalendar;
 
 import android.app.AlarmManager;
@@ -27,7 +22,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
->>>>>>> Changed Homework Fragment
 
 public class HomeworkFragment extends ListFragment{
 	
