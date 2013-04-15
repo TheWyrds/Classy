@@ -77,9 +77,11 @@ public class DbHelper extends SQLiteOpenHelper {
     		"DROP TABLE IF EXISTS" + DbContract.Homework.TABLE_NAME + ";" +
     		"DROP TABLE IF EXISTS" + DbContract.Grades.TABLE_NAME + ";" ;
 
-
+    private Context context;
+    
     public DbHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLES);

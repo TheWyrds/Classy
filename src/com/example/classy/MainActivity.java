@@ -1,12 +1,14 @@
  package com.example.classy;
 
-import com.example.classy.utilities.TabListener;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.Menu;
+
+import com.example.classy.database.Db;
+import com.example.classy.utilities.TabListener;
 
 
 public class MainActivity extends Activity {
@@ -14,6 +16,18 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
+	    
+	    // Initialize database for future use, display progress dialog to run
+	    // while it does so, preventing user interaction until the app can
+	    // be populated
+	    Db theDb = Db.getInstance(this);
+	    ProgressDialog progressDialog = new ProgressDialog(this);
+	    progressDialog.setIndeterminate(true);
+	    progressDialog.show();
+	    while(theDb.initialized() == false) {
+	    	continue;
+	    }
+	    progressDialog.dismiss();
 	    
 	    ActionBar actionBar = getActionBar();
 	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS | 
