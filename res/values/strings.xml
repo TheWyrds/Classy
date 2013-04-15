@@ -6,5 +6,13 @@
     <string name="homework">Homework</string>
     <string name="grades">Grades</string>
     <string name="menu_settings">Settings</string>
-
+    
+    <string name="alarm_button">startDialogBox</string>
+	<string name="alarm_description">alarmDescription</string>
+	<string name="Add Alarm">buttonName</string>
+	
+	<string name="open_toast">Toast</string>
+	
+	<string name="homework_description">Description</string>
+	
 </resources>
