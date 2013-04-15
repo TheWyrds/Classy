@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
-    <DatePicker
-        android:id="@+id/dp_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    
-    <TimePicker
-        android:id="@+id/tp_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/dp_date" />
-    
-    <RelativeLayout
-        android:id="@+id/app_name"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tp_time"
-        android:gravity="center_horizontal" >
+    android:layout_height="match_parent" 
+    android:layout_gravity="center" >
     
     <EditText android:id="@+id/homework_description"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="bottom" 
+        android:gravity="top" 
         android:hint="@string/homework_description"/>
    
-    </RelativeLayout>
-</RelativeLayout>
+</FrameLayout>

@@ -3,13 +3,14 @@ package com.example.classy;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
 public class AlarmReceiver extends BroadcastReceiver{
 	
+	private Context myContext;
+	
 	@Override
-	public void onReceive(Context arg0, Intent arg1){
-		Toast.makeText(arg0, "Alarm is set!", Toast.LENGTH_LONG).show();
+	public void onReceive(Context c, Intent i){
+		myContext = c;
 	}
 
 }
