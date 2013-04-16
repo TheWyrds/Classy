@@ -81,15 +81,22 @@ public class DbHelper extends SQLiteOpenHelper {
     
     public DbHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+              
         this.context = context;
     }
+    
+    @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLES);
     }
+    
+    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_TABLES);
         onCreate(db);
     }
+    
+    @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }

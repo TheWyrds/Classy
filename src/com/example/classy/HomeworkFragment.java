@@ -1,5 +1,7 @@
 package com.example.classy;
 
+import com.example.classy.utilities.ClassyTabFunctionality;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -17,13 +19,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-public class HomeworkFragment extends ListFragment{
+public class HomeworkFragment extends ListFragment implements ClassyTabFunctionality {
 	
 	Button startSetDialogButton;
 	TextView textAlarmDescription;
 	
 	HWDialogFragment hwDialog = new HWDialogFragment();
 	
+	/*
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, 
 														Bundle savedInstanceState){
@@ -39,6 +42,7 @@ public class HomeworkFragment extends ListFragment{
 			}
 		});
 	}
+	*/
 	
 	public static class HWDialogFragment extends DialogFragment{
 		View view = null;

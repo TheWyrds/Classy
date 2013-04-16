@@ -9,4 +9,11 @@
     <item
         android:id="@+id/class_menu"
         android:showAsAction="ifRoom|withText" />
+    
+    <item
+        android:id="@+id/new_item"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_new_item"
+        android:title="@string/new_item" />
+    
 </menu>

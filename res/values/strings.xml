@@ -10,6 +10,7 @@
     <string name="alarm_button">startDialogBox</string>
 	<string name="alarm_description">alarmDescription</string>	
 	<string name="open_toast">Toast</string>
+	<string name="new_item">New</string>
 	
 	<string name="homework_description">Description</string>
 	

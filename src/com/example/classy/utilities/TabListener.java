@@ -5,6 +5,8 @@
  */
 package com.example.classy.utilities;
 
+import com.example.classy.MainActivity;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
@@ -40,6 +42,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
             // If it exists, simply attach it in order to show it
             ft.attach(mFragment);
         }
+        ((MainActivity) mActivity).setCurrentTabFragment(mFragment);
     }
 
     public void onTabUnselected(Tab tab, FragmentTransaction ft) {
