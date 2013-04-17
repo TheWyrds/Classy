@@ -5,27 +5,77 @@
         <item>Databases</item>
         <item>North Korea and You</item>
     </string-array>
+    
     <string-array name="homeworkTitle">
         <item>Project</item>
+        <item>Deliver stellar presentation</item>
         <item>Add 2+2</item>
+        <item>Probs 1 to 10 odds, 11 to 100 primes</item>
+        <item>Write 75 PL/SQL statements</item>
+        <item>Project: Implement SQL standard in SQLite</item>
         <item>Nuclear Strategy Eval</item>
+    </string-array>
+	<string-array name="homeworkClass">
+	    <item>Mobile</item>
+	    <item>Mobile</item>
+	    <item>Number Theory</item>
+	    <item>Number Theory</item>
+	    <item>Databases</item>
+	    <item>Databases</item>
+	    <item>North Korea and You</item>
   	</string-array>
   	<string-array name="homeworkDueDate">
-        <item>Project</item>
-        <item>Add 2+2</item>
-        <item>Nuclear Strategy Eval</item>
+        <item>24 April</item>
+        <item>17 April</item>
+        <item>19 April</item>
+        <item>22 April</item>
+        <item>17 April</item>
+        <item>24 April</item>
+        <item>18 April</item>
   	</string-array>
-  	<string-array name="homeworkClass">
-        <item>0</item>
-        <item>1</item>
-        <item>3</item>
-  	</string-array>
-    <string-array name="grades">
-        <item>Because Oct 31 == Dec 25!</item>
-        <item>\&quot;Java.\&quot;</item>
+  	
+    <integer-array name="grades">
+        <item>99</item>
+        <item>87</item>
+        <item>92</item>
+        <item>91</item>
+        <item>85</item>
+        <item>86</item>
+        <item>100</item>
+        <item>94</item>
+        <item>83</item>
+        <item>89</item>
+        <item>79</item>
+		<item>92</item>
+	</integer-array>
+	<string-array name="gradesClass">
+	    <item>Mobile</item>
+	    <item>Mobile</item>
+	    <item>Mobile</item>
+		<item>Number Theory</item>
+		<item>Number Theory</item>
+		<item>Number Theory</item>
+		<item>Databases</item>
+		<item>Databases</item>
+		<item>Databases</item>
+		<item>North Korea and You</item>
+		<item>North Korea and You</item>
+		<item>North Korea and You</item>
 	</string-array>
-    <string-array name="notes">
-        <item>Because Oct 31 == Dec 25!</item>
-        <item>\&quot;Java.\&quot;</item>
-	</string-array> 
+	<string-array name="gradesDate">
+	    <item>27 March</item>
+	    <item>3 April</item>
+	    <item>10 April</item>
+	    <item>27 March</item>
+	    <item>29 March</item>
+	    <item>5 April</item>
+	    <item>22 March</item>
+	    <item>25 March</item>
+	    <item>27 March</item>
+	    <item>18 March</item>
+	    <item>25 March</item>
+	    <item>1 April</item>
+	</string-array>
+	
+	
 </resources>
