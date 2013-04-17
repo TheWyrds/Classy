@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.app.ListFragment;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.SimpleAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.example.classy.database.Db;
@@ -23,43 +25,34 @@ public class HomeworkFragment extends ListFragment implements ClassyTabFunctiona
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);		
 		
+		String currentClass = ((MainActivity) getActivity()).currentClass;
+		
 		Db theDb = Db.getInstance(getActivity());
 		
-		Cursor c = theDb.getDB().rawQuery("SELECT, null)
+		//Cursor c = theDb.getDB().rawQuery("SELECT, null)
 
-		ArrayList<Map<String, String>> data = getListForListView();
+	/*	ArrayList<Map<String, String>> data = getListForListView();
 				
 		SimpleAdapter adapter = 
 				new SimpleAdapter(getActivity(), data, R.layout.hw_list_item, 
 						new String[] {DbContract.Homework.ATTRIBUTE_DUEDATE, DbContract.Homework.ATTRIBUTE_TITLE}, 
 						new int[] {R.id.due_date, R.id.hw_list_title} );
-		
-		setListAdapter(adapter);
-		
-	
-		
-	
-	//	setListAdapter(new ArrayAdapter<String>(getActivity(),
-		//		R.array.))
-	}
-	
-	/*
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, 
-														Bundle savedInstanceState){
-		
-	//	textAlarmDescription = (TextView) view.findViewById(R.id.alarm_description);
-	//	startSetDialogButton = (Button) view.findViewById(R.id.alarm_button);
-		
-		startSetDialogButton.setOnClickListener(new OnClickListener(){
-			public void onClick(View v) {
-				HWDialogFragment fragment = new HWDialogFragment();
-				//fragment.show(getChildFragmentManager(), "Alarm Settings");
-				fragment.show(getFragmentManager(), "Alarm Settings");
-			}
-		});
-	}
 	*/
+		String query = 
+				"SELECT * FROM " + DbContract.Homework.TABLE_NAME + " , " + DbContract.AssignedIn.TABLE_NAME + " , " + DbContract.Classes.TABLE_NAME + "\n" +
+				"WHERE " + DbContract.Homework.TABLE_NAME + "." + DbContract.Homework._ID + " = " + DbContract.AssignedIn.ATTRIBUTE_HOMEWORKID + "\n" +
+				"AND " + DbContract.AssignedIn.ATTRIBUTE_CLASSID + " = " + DbContract.Classes.TABLE_NAME + "." + DbContract.Classes._ID + "\n" + 
+				"AND " + DbContract.Classes.ATTRIBUTE_NAME + " = " + "\"" + currentClass + "\"";
+		System.out.println(query);
+		Cursor c = theDb.getDB().rawQuery(query, null);
+		
+		String[] colNames = new String[] { DbContract.Homework.ATTRIBUTE_DUEDATE, DbContract.Homework.ATTRIBUTE_TITLE };
+		int[] adapterRowViews = new int[] { R.id.due_date, R.id.hw_list_title };
+		
+		SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), R.layout.hw_list_item, c, colNames, adapterRowViews, 0);
+
+		setListAdapter(adapter);
+	}
 	
 	
 	@Override

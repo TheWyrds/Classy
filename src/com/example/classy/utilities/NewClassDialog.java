@@ -1,5 +1,7 @@
 package com.example.classy.utilities;
 
+import com.example.classy.R;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,7 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.example.classy.R;
+//import com.example.classy.R;
 
 public class NewClassDialog extends DialogFragment {
 

@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -87,7 +86,6 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 	    
 	    System.out.println("first class from query:" + c.getString(1));
 */
-	    
 	    ////////////////////////////////////////////
 	    while(theDb.initialized() == false) {
 	    	continue;
@@ -148,6 +146,8 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 		classesSpinner.setOnItemSelectedListener(this);
 		
 		//Set current class
+		System.out.println(classesSpinner);
+		System.out.println(classesSpinner.getSelectedItem());
 		currentClass = ((Cursor)classesSpinner.getSelectedItem()).getString(0);
 		System.out.println(currentClass);
 		

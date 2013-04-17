@@ -65,12 +65,6 @@ public class Db {
 		return true;
 	}
 	
-	public List<String[]> queryHomework(String... attributes) {
-		
-		List<String[]> retList = new ArrayList<String[]>();
-		
-		
-		
-	}
+	
 	
 }

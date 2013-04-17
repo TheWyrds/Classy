@@ -19,6 +19,9 @@
 	<string name="add">Add</string>
 	<string name="cancel">Cancel</string>
 	
+	<string name="notes_background_image">NotesBackgroundImage</string>
+	
 	<string name="homework_description">Description</string>
+	<string name="hw_title_hint">Title</string>
 	
 </resources>

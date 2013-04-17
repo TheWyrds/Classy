@@ -3,10 +3,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
         
-    <EditText android:id="@+id/class_title"
+    <EditText android:id="@+id/hw_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
-        android:hint="@string/class_title" 
+        android:hint="@string/hw_title_hint" 
         android:layout_gravity="top" >
     </EditText>
     
