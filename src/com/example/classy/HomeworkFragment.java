@@ -44,37 +44,11 @@ public class HomeworkFragment extends ListFragment implements ClassyTabFunctiona
 	}
 	*/
 	
-	public static class HWDialogFragment extends DialogFragment{
-		View view = null;
-		EditText editText;
-		TextView textView;
+	
+	@Override
+	public void addNewItem() {
 		
-		TimePicker myTimePicker;
-		TimePickerDialog timePickerDialog;
-					
-		HomeworkFragment hf;
-		
-		@Override
-		public Dialog onCreateDialog(Bundle savedInstanceState){
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-			LayoutInflater inflater = getActivity().getLayoutInflater();
-			view = inflater.inflate(R.layout.dialog_fragment, null);
-			
-			builder.setView(view).setPositiveButton("Save", new DialogInterface.OnClickListener(){
-				public void onClick(DialogInterface dialog, int id){
-					EditText editText = (EditText)view.findViewById(R.id.homework_description);
-					hf.textAlarmDescription.setText(editText.getText().toString());
- 
-				}
-
-			})
-			.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
-				public void onClick(DialogInterface dialog, int id){
-					
-				}
-			});
-			
-			return builder.create();
-		}
 	}
+	
+
 }

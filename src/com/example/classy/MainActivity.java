@@ -117,5 +117,5 @@ public class MainActivity extends Activity {
 	public void setCurrentTabFragment(Fragment frag) {
 		currentTabFragment = frag;
 	}
-
+	
 }
