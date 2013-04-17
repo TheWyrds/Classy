@@ -37,9 +37,8 @@ public class NewClassDialog extends DialogFragment {
 		LayoutInflater inflater = getActivity().getLayoutInflater();
 		final View dialogView = inflater.inflate(R.layout.new_class_dialog, null);
 		
-		builder.setView(dialogView);
-		
-		builder.setTitle(R.string.title_new_class_dialog)
+		builder.setView(dialogView)
+			   .setTitle(R.string.title_new_class_dialog)
 			   .setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
 				   public void onClick(DialogInterface dialog, int id) {
 					   mListener.onNewClassDialogPositiveClick(dialogView);

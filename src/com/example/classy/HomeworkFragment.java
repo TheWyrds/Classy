@@ -58,6 +58,9 @@ public class HomeworkFragment extends ListFragment implements ClassyTabFunctiona
 	@Override
 	public void addNewItem() {
 		
+		HWDialogFragment dialog = new HWDialogFragment();
+		dialog.show(getActivity().getFragmentManager(), "addHomeworkDialog");
+		
 		System.out.println("HWfragment");
 	}
 	

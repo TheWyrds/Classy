@@ -15,11 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.classy.HWDialogFragment.HWDialogListener;
 import com.example.classy.database.Db;
 import com.example.classy.database.DbContract;
 import com.example.classy.utilities.ClassyTabFunctionality;
@@ -28,7 +30,8 @@ import com.example.classy.utilities.NewClassDialog.NewClassDialogListener;
 import com.example.classy.utilities.TabListener;
 
 public class MainActivity extends Activity implements OnItemSelectedListener ,
-													  NewClassDialogListener {
+													  NewClassDialogListener ,
+													  HWDialogListener {
 
 	public String currentClass;
 	public Fragment currentTabFragment;
@@ -204,7 +207,20 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 		
 			((SimpleCursorAdapter)classesSpinner.getAdapter()).swapCursor(c);
 		}
+	}
+	
+	@Override
+	public void onHWDialogPositiveClick(View dialogView) {
+		EditText titleEditText = (EditText) dialogView.findViewById(R.id.hw_dialog_title);
+		EditText desEditText = (EditText) dialogView.findViewById(R.id.hw_dialog_description);
+		DatePicker datePicker = (DatePicker) dialogView.findViewById(R.id.hw_dialog_date_picker);
 		
+		String title = titleEditText.getText().toString();
+		String description = desEditText.getText().toString();
+		
+		int day = datePicker.getDayOfMonth();
+		int month = datePicker.getMonth();
+		int year = datePicker.getYear();
 	}
 	
 	
