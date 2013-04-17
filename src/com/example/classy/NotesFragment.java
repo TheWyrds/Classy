@@ -1,14 +1,25 @@
 package com.example.classy;
 
 import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
-import com.example.classy.utilities.ClassyTabFunctionality;
-
-public class NotesFragment extends Fragment implements ClassyTabFunctionality {
-
+public class NotesFragment extends Fragment {
 	
 	@Override
-	public void addNewItem() {
-		System.out.println("notesfragment add new item");
+	public void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
 	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+		  View V = inflater.inflate(R.layout.notes_fragment_layout, container, false); 
+          //ImageView notesBackgroundImage = (ImageView)V.findViewById(R.id.notes_background_image); 
+
+          return V;
+	}
+
 }
