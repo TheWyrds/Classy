@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.example.classy.database.Db;
+import com.example.classy.database.DbContract;
 import com.example.classy.utilities.ClassyTabFunctionality;
 
 public class HomeworkFragment extends ListFragment implements ClassyTabFunctionality {
@@ -20,12 +22,16 @@ public class HomeworkFragment extends ListFragment implements ClassyTabFunctiona
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);		
+		
+		Db theDb = Db.getInstance(getActivity());
+		
+		Cursor c = theDb.getDB().rawQuery("SELECT, null)
 
 		ArrayList<Map<String, String>> data = getListForListView();
 				
 		SimpleAdapter adapter = 
 				new SimpleAdapter(getActivity(), data, R.layout.hw_list_item, 
-						new String[] {"dueDate", "title"}, 
+						new String[] {DbContract.Homework.ATTRIBUTE_DUEDATE, DbContract.Homework.ATTRIBUTE_TITLE}, 
 						new int[] {R.id.due_date, R.id.hw_list_title} );
 		
 		setListAdapter(adapter);
@@ -58,7 +64,6 @@ public class HomeworkFragment extends ListFragment implements ClassyTabFunctiona
 	
 	@Override
 	public void addNewItem() {
-		
 		
 		System.out.println("HWfragment");
 	}

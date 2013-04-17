@@ -11,6 +11,13 @@
 	<string name="alarm_description">alarmDescription</string>	
 	<string name="open_toast">Toast</string>
 	<string name="new_item">New</string>
+	<string name="add_class">Add class</string>
+	
+	<string name="title_new_class_dialog">Add class</string>
+	<string name="new_class_hint">Class name</string>
+	
+	<string name="add">Add</string>
+	<string name="cancel">Cancel</string>
 	
 	<string name="homework_description">Description</string>
 	
