@@ -1,6 +1,6 @@
-gen/
-bin/
 !bin/*.xml
 !bin/res/
+gen/
+bin/
 *.class
 *.dex
