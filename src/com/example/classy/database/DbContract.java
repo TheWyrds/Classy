@@ -79,7 +79,7 @@ public class DbContract {
 		public static final String OPTIONS_TITLE = "NOT NULL";
 		
 		public static final String ATTRIBUTE_GRADE = "grade";
-		public static final String TYPE_GRADE = "TEXT";
+		public static final String TYPE_GRADE = "REAL";
 		public static final String OPTIONS_GRADE = "NOT NULL";
 		
 		public static final String ATTRIBUTE_DATE = "date";

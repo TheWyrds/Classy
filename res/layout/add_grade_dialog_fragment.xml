@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:orientation="vertical" 
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp" >
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+   		android:paddingTop="15dp"
+    	android:paddingBottom="5dp"
+    	android:paddingLeft="15dp"
+    	android:paddingRight="15dp" 
+    	android:gravity="center_horizontal" >
+        
+        <EditText 
+            android:id="@+id/earned_points_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/earned_points_hint" 
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp" 
+            android:gravity="left" 
+            android:inputType="numberSigned" >
+        </EditText>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:gravity="center_horizontal"
+            android:text="@string/earned_total_delimeter" >
+        </TextView>
+        
+        <EditText 
+            android:id="@+id/total_points_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/total_points_hint" 
+            android:paddingLeft="10dp" 
+            android:paddingRight="10dp"
+            android:gravity="right" 
+            android:inputType="numberSigned" >
+        </EditText>
+        
+    </LinearLayout>    
+    
+    <EditText 
+        android:id="@+id/grade_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:hint="@string/grade_title_hint" 
+        android:layout_gravity="bottom|center_horizontal" 
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+   	</EditText>
+   
+</LinearLayout>

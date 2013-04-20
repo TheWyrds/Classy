@@ -1,0 +1,5 @@
+gen/
+bin/
+!bin/res/
+*.class
+*.dex

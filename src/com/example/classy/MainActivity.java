@@ -1,5 +1,8 @@
  package com.example.classy;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
@@ -21,9 +24,12 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.classy.GradesDialogFragment.GradesDialogListener;
 import com.example.classy.HWDialogFragment.HWDialogListener;
 import com.example.classy.database.Db;
 import com.example.classy.database.DbContract;
+import com.example.classy.utilities.ClassyDate;
+import com.example.classy.utilities.ClassyHwReminder;
 import com.example.classy.utilities.ClassyTabFunctionality;
 import com.example.classy.utilities.NewClassDialog;
 import com.example.classy.utilities.NewClassDialog.NewClassDialogListener;
@@ -31,7 +37,8 @@ import com.example.classy.utilities.TabListener;
 
 public class MainActivity extends Activity implements OnItemSelectedListener ,
 													  NewClassDialogListener ,
-													  HWDialogListener {
+													  HWDialogListener,
+													  GradesDialogListener {
 
 	public String currentClass;
 	public Fragment currentTabFragment;
@@ -46,6 +53,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 	String[] gradesClasses;
 	String[] gradesDates;
 	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -97,13 +105,14 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 	    
 	    ActionBar actionBar = getActionBar();
 	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
+	    actionBar.setDisplayShowTitleEnabled(true);
+	    
 	    // Notice that setContentView() is not used, because we use the root
 	    // android.R.id.content as the container for each fragment
 
 	    // setup action bar for tabs
-	    setupActionBarTabs(actionBar);
-	    
+	    	setupActionBarTabs(actionBar);
+	    	
 	    // Get and save all hardcoded data from resources
 	    classes = getResources().getStringArray(R.array.classes);
 		hwTitles = getResources().getStringArray(R.array.homeworkTitle);
@@ -115,6 +124,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 		
 		//Set current class
 		currentClass = classes[0];
+		System.out.println("in oncreate currentclass:" + currentClass);
 	    
 	}
 
@@ -151,8 +161,8 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 		//Set current class
 		System.out.println(classesSpinner);
 		System.out.println(classesSpinner.getSelectedItem());
-		currentClass = ((Cursor)classesSpinner.getSelectedItem()).getString(0);
-		System.out.println(currentClass);
+		currentClass = ((Cursor)classesSpinner.getSelectedItem()).getString(1);
+		System.out.println("in oncreateoptionsmenu currentclass: " + currentClass);
 		
 		return true;
 	}
@@ -179,9 +189,11 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
         // parent.getItemAtPosition(pos)
 		
 		Cursor currentItem = (Cursor) parent.getItemAtPosition(pos);
-		currentClass = currentItem.getString(0);
+		currentClass = currentItem.getString(1);
+		System.out.println("in onitemselected currentclass:" + currentClass);
 		
-		//currentClass = (String) parent.getItemAtPosition(pos);
+		// Refresh the current tab
+		((ClassyTabFunctionality) currentTabFragment).refresh();
     }
 
 	@Override
@@ -200,12 +212,17 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 		if (addSuccess == false) {
 			Toast.makeText(this, "Class name already used", Toast.LENGTH_SHORT)
 				 .show();
+			return;
 		}
 		else {
 			//Refresh cursor in classesSpinner
 			Cursor c = theDb.getDB().rawQuery("SELECT * FROM " + DbContract.Classes.TABLE_NAME, null);
 		
 			((SimpleCursorAdapter)classesSpinner.getAdapter()).swapCursor(c);
+			
+			//TODO fix, unreliable since no guaranteed order
+			//Set spinner to new class
+			classesSpinner.setSelection(classesSpinner.getCount() - 1, true);
 		}
 	}
 	
@@ -217,10 +234,62 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 		
 		String title = titleEditText.getText().toString();
 		String description = desEditText.getText().toString();
-		
+				
 		int day = datePicker.getDayOfMonth();
 		int month = datePicker.getMonth();
 		int year = datePicker.getYear();
+		ClassyDate date = new ClassyDate(year, month, day);
+		
+		Db theDb = Db.getInstance(this);
+		boolean addSuccess = theDb.addHw(currentClass, title, date, description, null);
+		
+		if (addSuccess == false) {
+			Toast.makeText(this, "Homework could not be added", Toast.LENGTH_SHORT)
+				 .show();
+		}
+		else {
+			//TODO inelegant
+			((HomeworkFragment)currentTabFragment).refresh();
+			
+			ClassyHwReminder reminder = new ClassyHwReminder(this, currentClass, title, date);
+			reminder.scheduleNotification();
+		}
+	}
+	
+	@Override
+	public void onGradesDialogPositiveClick(View dialogView) {
+		EditText earnedEditText = (EditText) dialogView.findViewById(R.id.earned_points_edit_text);
+		EditText totalEditText = (EditText) dialogView.findViewById(R.id.total_points_edit_text);
+		EditText titleEditText = (EditText) dialogView.findViewById(R.id.grade_dialog_title);
+		
+		String earnedString = earnedEditText.getText().toString();
+		String totalString = totalEditText.getText().toString();
+		String title = titleEditText.getText().toString();
+		
+		//TODO make this more user-friendly
+		if ( !earnedString.equals("") && !totalString.equals("") && !title.equals("")) {
+		
+			int earnedPoints = Integer.parseInt(earnedString);
+			int totalPoints = Integer.parseInt(totalString);
+			
+			double grade = 100 * earnedPoints / (double) totalPoints;
+			
+			//Insert new grade into database
+			Db theDb = Db.getInstance(this);
+				//TODO add date field to dialog, remove currentdate
+			boolean addSuccess = theDb.addGrade(currentClass, title, grade, new ClassyDate());
+			
+			if (addSuccess == false) {
+				Toast.makeText(this, "Grade could not be added", Toast.LENGTH_SHORT)
+					 .show();
+			}
+			else {
+				((GradesFragment)currentTabFragment).refresh();
+			}
+		}
+		else
+			Toast.makeText(this, "Grade could not be added", Toast.LENGTH_SHORT)
+			     .show();
 	}
 	
 	

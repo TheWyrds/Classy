@@ -25,6 +25,12 @@
 	<string name="homework_description">Description</string>
 	<string name="hw_title_hint">Title</string>
 	
+	<string name="grade_dialog_title">Add grade</string>
+	<string name="earned_points_hint">Earned</string>
+	<string name="earned_total_delimeter">/</string>
+	<string name="total_points_hint">Total</string>
+	<string name="grade_title_hint">Title</string>
+	
 	
 	
 </resources>
