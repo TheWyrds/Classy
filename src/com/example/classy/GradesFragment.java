@@ -55,12 +55,24 @@ public class GradesFragment extends ListFragment implements ClassyTabFunctionali
 		Db theDb = Db.getInstance(getActivity());
 		String currentClass = ((MainActivity) getActivity()).currentClass;
 		
-		String query = 
+		String query;
+		if (currentClass == getActivity().getString(R.string.all_classes)){
+			//Choose all classes
+			query = 
+				"SELECT * FROM " + DbContract.Grades.TABLE_NAME + " , " + DbContract.GivenIn.TABLE_NAME + " , " + DbContract.Classes.TABLE_NAME + "\n" +
+				"WHERE " + DbContract.Grades.TABLE_NAME + "." + DbContract.Grades._ID + " = " + DbContract.GivenIn.ATTRIBUTE_GRADESID + "\n" +
+				"AND " + DbContract.GivenIn.ATTRIBUTE_CLASSID + " = " + DbContract.Classes.TABLE_NAME + "." + DbContract.Classes._ID + "\n" + 
+				"ORDER BY " + DbContract.Grades.ATTRIBUTE_DATE;
+		}
+		else {
+			//Choose only from the currentClass
+			query = 
 				"SELECT * FROM " + DbContract.Grades.TABLE_NAME + " , " + DbContract.GivenIn.TABLE_NAME + " , " + DbContract.Classes.TABLE_NAME + "\n" +
 				"WHERE " + DbContract.Grades.TABLE_NAME + "." + DbContract.Grades._ID + " = " + DbContract.GivenIn.ATTRIBUTE_GRADESID + "\n" +
 				"AND " + DbContract.GivenIn.ATTRIBUTE_CLASSID + " = " + DbContract.Classes.TABLE_NAME + "." + DbContract.Classes._ID + "\n" + 
 				"AND " + DbContract.Classes.ATTRIBUTE_NAME + " = " + "\"" + currentClass + "\"" + "\n" + 
 				"ORDER BY " + DbContract.Grades.ATTRIBUTE_DATE;
+		}
 		System.out.println(query);
 
 		Cursor c = theDb.getDB().rawQuery(query, null);

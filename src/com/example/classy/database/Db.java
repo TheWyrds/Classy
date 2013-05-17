@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.example.classy.R;
 import com.example.classy.utilities.ClassyDate;
 
 import android.content.ContentValues;
@@ -20,11 +21,15 @@ public class Db {
 	private SQLiteDatabase theDb;
 	private boolean isReady;
 	
+	private static Context context;
+	
 	private Db() {}
 	
 	public static Db getInstance(Context context) {
 		
 		if (classyDb == null) {
+			Db.context = context;
+
 			classyDb = new Db();
 			classyDb.isReady = false;
 			
@@ -53,6 +58,30 @@ public class Db {
 			return null;
 		return theDb;
 	}
+	
+	/* ***********************************************************************
+	 * Convenience functions to add and and get resources from database in a *	
+	 * uniform and consistent fashion										 *					
+	 * 																		 *	
+	 * ***********************************************************************/
+	
+	///////Getters
+	
+	public List<String> getClassesList() {
+		Cursor c = theDb.rawQuery("SELECT * " +
+								  "FROM " + DbContract.Classes.TABLE_NAME, null);
+		
+		//Read cursor into an ArrayList
+		List<String> classesList = new ArrayList<String>();
+		classesList.add( context.getString(R.string.all_classes) );			//Add "All classes"
+		
+		while (c.moveToNext()) {
+			classesList.add( c.getString( c.getColumnIndex(DbContract.Classes.ATTRIBUTE_NAME)));
+		}
+		
+		return classesList;
+	}
+	
 	
 	//Returns true if successful, false if an error occurred
 	public boolean addClass(String cls) {

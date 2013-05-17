@@ -98,7 +98,7 @@ public class DbHelper extends SQLiteOpenHelper {
     	db.execSQL(SQL_CREATE_TABLE_GIVENIN);
     	
     	//Inserts a default value into classes to prevent crashing
-    	db.execSQL("INSERT INTO classes(name) VALUES(\"Mobile\")");
+    	//db.execSQL("INSERT INTO classes(name) VALUES(\"Mobile\")");
 
 
     }

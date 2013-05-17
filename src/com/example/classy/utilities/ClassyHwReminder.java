@@ -77,7 +77,7 @@ public class ClassyHwReminder {
 		
 		alarmManager.set(AlarmManager.RTC, firstReminder.getTimeInMillis(), pendingIntent1);
 		alarmManager.set(AlarmManager.RTC, secondReminder.getTimeInMillis(), pendingIntent2);
-		alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + 5000, pendingIntent3);
+		alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + 60000, pendingIntent3);
 		
 		
 	}

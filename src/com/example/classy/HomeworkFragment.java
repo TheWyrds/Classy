@@ -68,12 +68,25 @@ public class HomeworkFragment extends ListFragment implements ClassyTabFunctiona
 		Db theDb = Db.getInstance(getActivity());
 		String currentClass = ((MainActivity) getActivity()).currentClass;
 		
-		String query = 
+		String query;
+		if (currentClass == getActivity().getString(R.string.all_classes)) {
+			//Choose all classes
+			query = 
+				"SELECT * FROM " + DbContract.Homework.TABLE_NAME + " , " + DbContract.AssignedIn.TABLE_NAME + " , " + DbContract.Classes.TABLE_NAME + "\n" +
+				"WHERE " + DbContract.Homework.TABLE_NAME + "." + DbContract.Homework._ID + " = " + DbContract.AssignedIn.ATTRIBUTE_HOMEWORKID + "\n" +
+				"AND " + DbContract.AssignedIn.ATTRIBUTE_CLASSID + " = " + DbContract.Classes.TABLE_NAME + "." + DbContract.Classes._ID + "\n" + 
+				"ORDER BY " + DbContract.Homework.ATTRIBUTE_DUEDATE;
+		}
+		else {
+			//Choose only from the currentClass
+			query = 
 				"SELECT * FROM " + DbContract.Homework.TABLE_NAME + " , " + DbContract.AssignedIn.TABLE_NAME + " , " + DbContract.Classes.TABLE_NAME + "\n" +
 				"WHERE " + DbContract.Homework.TABLE_NAME + "." + DbContract.Homework._ID + " = " + DbContract.AssignedIn.ATTRIBUTE_HOMEWORKID + "\n" +
 				"AND " + DbContract.AssignedIn.ATTRIBUTE_CLASSID + " = " + DbContract.Classes.TABLE_NAME + "." + DbContract.Classes._ID + "\n" + 
 				"AND " + DbContract.Classes.ATTRIBUTE_NAME + " = " + "\"" + currentClass + "\"" + "\n" + 
 				"ORDER BY " + DbContract.Homework.ATTRIBUTE_DUEDATE;
+		}
+		
 		System.out.println(query);
 
 		Cursor c = theDb.getDB().rawQuery(query, null);

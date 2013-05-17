@@ -1,16 +1,14 @@
  package com.example.classy;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
@@ -43,15 +42,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 	public String currentClass;
 	public Fragment currentTabFragment;
 	private Spinner classesSpinner;
-	
-	// Global data arrays
-	String[] classes;
-	String[] hwTitles;
-	String[] hwClasses;
-	String[] hwDueDates;
-	String[] grades;
-	String[] gradesClasses;
-	String[] gradesDates;
+	private Menu actionBarMenu;
 	
 
 	@Override
@@ -66,38 +57,6 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 	    progressDialog.setIndeterminate(true);
 	    progressDialog.show();
 	    
-	    ////////////////////////////////////////////
-	   
-	    /*ContentValues values = new ContentValues();
-	   // values.put(DbContract.Classes.ATTRIBUTE_NAME, "Mobile");
-	   // values.put(DbContract.Classes.ATTRIBUTE_NAME, "Number Theory");
-	  //  values.put(DbContract.Classes.ATTRIBUTE_NAME, "Graphics");
-	  //  values.put(DbContract.Classes.ATTRIBUTE_NAME, "North Korea and You");
-
-	  //  theDb.getDB().insertOrThrow(DbContract.Classes.TABLE_NAME, null, values);
-	    System.out.println(theDb);
-	    
-	    System.out.println(theDb.getDB());
-	    while(theDb.initialized() == false) {}
-	    Cursor c = theDb.getDB().rawQuery("SELECT * " + "\n" + 
-	    								  "FROM " + DbContract.Classes.TABLE_NAME , null );
-	   // c.moveToFirst();
-	    System.out.println("num rows " + c.getCount());
-	    System.out.println("num cols " + c.getColumnCount());
-	    	
-	    
-	    System.out.println("\n");
-	    for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext() ) {
-	    	for (int j = 0; j < c.getColumnCount(); j++) {
-	    		System.out.print(c.getString(j) + "  " );
-	    	}
-	    	System.out.println();
-	    }
-	    System.out.println("\n");
-	    
-	    System.out.println("first class from query:" + c.getString(1));
-*/
-	    ////////////////////////////////////////////
 	    while(theDb.initialized() == false) {
 	    	continue;
 	    }
@@ -111,45 +70,32 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 	    // android.R.id.content as the container for each fragment
 
 	    // setup action bar for tabs
-	    	setupActionBarTabs(actionBar);
-	    	
-	    // Get and save all hardcoded data from resources
-	    classes = getResources().getStringArray(R.array.classes);
-		hwTitles = getResources().getStringArray(R.array.homeworkTitle);
-		hwClasses = getResources().getStringArray(R.array.homeworkClass);
-		hwDueDates = getResources().getStringArray(R.array.homeworkDueDate);
-		grades = getResources().getStringArray(R.array.grades);
-		gradesClasses = getResources().getStringArray(R.array.gradesClass);
-		gradesDates = getResources().getStringArray(R.array.gradesDate);
-		
+	    setupActionBarTabs(actionBar);
+	    			
 		//Set current class
-		currentClass = classes[0];
-		System.out.println("in oncreate currentclass:" + currentClass);
 	    
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		
+		//Save menu for later access/modification of action bar
+		actionBarMenu = menu;
+		
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 
 		/////// Initialize spinner
 		classesSpinner = (Spinner) menu.findItem(R.id.class_menu).getActionView();
+		 
+		List<String> classesList = Db.getInstance(this).getClassesList();
 		
-		Cursor c = Db.getInstance(this).getDB().rawQuery("SELECT * " +
-														 "FROM " + DbContract.Classes.TABLE_NAME, null);
-		
-		String[] colNames = new String[] { DbContract.Classes.ATTRIBUTE_NAME };
-		int[] adapterRowViews = new int[] { android.R.id.text1 };
-		
-		// Create an ArrayAdapter using the string array and a default spinner layout
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-					getActionBar().getThemedContext(), android.R.layout.simple_spinner_item, 
-						c, colNames, adapterRowViews, 0);
-				
-		//		ArrayAdapter.createFromResource(
-		//				getActionBar().getThemedContext(), R.array.classes, android.R.layout.simple_spinner_item);
-		// Specify the layout to use when the list of choices appears
+		//Create array adapter for ListView
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+					getActionBar().getThemedContext(),
+					android.R.layout.simple_spinner_item,
+					classesList);
+	
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		
 		// Apply the adapter to the spinner
@@ -161,7 +107,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 		//Set current class
 		System.out.println(classesSpinner);
 		System.out.println(classesSpinner.getSelectedItem());
-		currentClass = ((Cursor)classesSpinner.getSelectedItem()).getString(1);
+		currentClass = (String) classesSpinner.getSelectedItem();
 		System.out.println("in oncreateoptionsmenu currentclass: " + currentClass);
 		
 		return true;
@@ -181,15 +127,21 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 		}
 	}
 	
-	//For class spinner in action bar
+	//Called when item selected in classesSpinner in action bar
 	@Override
     public void onItemSelected(AdapterView<?> parent, View view, 
             int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
 		
-		Cursor currentItem = (Cursor) parent.getItemAtPosition(pos);
-		currentClass = currentItem.getString(1);
+		//If item selected is "All classes", make add item ('+') invisible
+		String selectedClass = (String) parent.getItemAtPosition(pos);
+		currentClass = selectedClass;
+		
+		if (selectedClass == getString(R.string.all_classes))
+			//Make + button invisible
+			actionBarMenu.findItem(R.id.new_item).setVisible(false);
+		else
+			actionBarMenu.findItem(R.id.new_item).setVisible(true);
+		
 		System.out.println("in onitemselected currentclass:" + currentClass);
 		
 		// Refresh the current tab
@@ -201,6 +153,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
         // Another interface callback
     }	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onNewClassDialogPositiveClick(View dialogView) {
 		EditText et = (EditText) dialogView.findViewById(R.id.newClassEditText);
@@ -215,11 +168,9 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,
 			return;
 		}
 		else {
-			//Refresh cursor in classesSpinner
-			Cursor c = theDb.getDB().rawQuery("SELECT * FROM " + DbContract.Classes.TABLE_NAME, null);
-		
-			((SimpleCursorAdapter)classesSpinner.getAdapter()).swapCursor(c);
-			
+			//Refresh list in classesSpinner
+			( (ArrayAdapter<String>)classesSpinner.getAdapter() ).add(newClass);
+						
 			//TODO fix, unreliable since no guaranteed order
 			//Set spinner to new class
 			classesSpinner.setSelection(classesSpinner.getCount() - 1, true);
