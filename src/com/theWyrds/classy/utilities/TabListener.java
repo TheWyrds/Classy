@@ -3,9 +3,9 @@
  * taken from http://developer.android.com/guide/topics/ui/actionbar.html#Tabs
  * 
  */
-package com.example.classy.utilities;
+package com.theWyrds.classy.utilities;
 
-import com.example.classy.MainActivity;
+import com.theWyrds.classy.MainActivity;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;

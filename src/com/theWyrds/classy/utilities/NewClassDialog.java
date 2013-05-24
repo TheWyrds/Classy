@@ -1,6 +1,6 @@
-package com.example.classy.utilities;
+package com.theWyrds.classy.utilities;
 
-import com.example.classy.R;
+import com.theWyrds.classy.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

@@ -1,11 +1,11 @@
-package com.example.classy.database;
+package com.theWyrds.classy.database;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import com.example.classy.R;
-import com.example.classy.utilities.ClassyDate;
+import com.theWyrds.classy.R;
+import com.theWyrds.classy.utilities.ClassyDate;
 
 import android.content.ContentValues;
 import android.content.Context;

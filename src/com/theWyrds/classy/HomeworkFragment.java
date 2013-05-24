@@ -1,4 +1,4 @@
-package com.example.classy;
+package com.theWyrds.classy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,10 +16,11 @@ import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 import android.widget.AdapterView.*;
 
-import com.example.classy.database.Db;
-import com.example.classy.database.DbContract;
-import com.example.classy.utilities.ClassyDate;
-import com.example.classy.utilities.ClassyTabFunctionality;
+import com.theWyrds.classy.R;
+import com.theWyrds.classy.database.Db;
+import com.theWyrds.classy.database.DbContract;
+import com.theWyrds.classy.utilities.ClassyDate;
+import com.theWyrds.classy.utilities.ClassyTabFunctionality;
 
 public class HomeworkFragment extends ListFragment implements ClassyTabFunctionality {
 	

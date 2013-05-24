@@ -1,4 +1,4 @@
-package com.example.classy;
+package com.theWyrds.classy;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

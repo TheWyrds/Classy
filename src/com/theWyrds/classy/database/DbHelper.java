@@ -1,4 +1,4 @@
-package com.example.classy.database;
+package com.theWyrds.classy.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

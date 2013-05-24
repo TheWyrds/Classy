@@ -1,8 +1,8 @@
-package com.example.classy;
+package com.theWyrds.classy;
 
 import java.util.Date;
 
-import com.example.classy.HWDialogFragment.HWDialogListener;
+import com.theWyrds.classy.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,22 +18,30 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-public class GradesDialogFragment extends DialogFragment {
-
-	public interface GradesDialogListener {
-		public void onGradesDialogPositiveClick(View dialogView);
+public class HWDialogFragment extends DialogFragment{
+	
+	public interface HWDialogListener {
+		public void onHWDialogPositiveClick(View dialogView);
 	}
 	
-	GradesDialogListener mListener;
-	View view;	
+	HWDialogListener mListener;
+	
+	View view = null;
+	EditText editText;
+	TextView textView;
+	
+	TimePicker myTimePicker;
+	TimePickerDialog timePickerDialog;
+				
+	HomeworkFragment hf;
 	
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		try {
-			mListener = (GradesDialogListener) activity;
+			mListener = (HWDialogListener) activity; 
 		} catch (ClassCastException e) {
-			throw new ClassCastException(activity.toString() + " must implement GradesDialogListener");
+			throw new ClassCastException(activity.toString() + " must implement HWDialogListener");
 		}
 	}
 	
@@ -41,13 +49,13 @@ public class GradesDialogFragment extends DialogFragment {
 	public Dialog onCreateDialog(Bundle savedInstanceState){
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		LayoutInflater inflater = getActivity().getLayoutInflater();
-		view = inflater.inflate(R.layout.add_grade_dialog_fragment, null);
+		view = inflater.inflate(R.layout.add_homework_dialog_fragment, null);
 		
 		builder.setView(view)
-			   .setTitle(R.string.grade_dialog_title)
+			   .setTitle(R.string.hw_dialog_title)
 			   .setPositiveButton("Save", new DialogInterface.OnClickListener(){
 				   	public void onClick(DialogInterface dialog, int id){
-				   		mListener.onGradesDialogPositiveClick(view);
+				   		mListener.onHWDialogPositiveClick(view);
 				   	}
 			   })
 			   .setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
@@ -56,7 +64,11 @@ public class GradesDialogFragment extends DialogFragment {
 				   }
 			   });
 		
+		//Initialize datepicker
+		DatePicker datePicker = (DatePicker) view.findViewById(R.id.hw_dialog_date_picker);
+		datePicker.setCalendarViewShown(false);
+		datePicker.setMinDate( new Date().getTime() - 1000 );		// - 1000 milliseconds to ensure min time is less than current time
+		
 		return builder.create();
 	}
-	
 }

@@ -1,6 +1,7 @@
-package com.example.classy;
+package com.theWyrds.classy;
 
-import com.example.classy.utilities.ClassyTabFunctionality;
+import com.theWyrds.classy.R;
+import com.theWyrds.classy.utilities.ClassyTabFunctionality;
 
 import android.app.Fragment;
 import android.os.Bundle;

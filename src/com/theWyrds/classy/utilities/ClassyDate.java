@@ -1,4 +1,4 @@
-package com.example.classy.utilities;
+package com.theWyrds.classy.utilities;
 
 import java.util.Calendar;
 import java.util.Date;

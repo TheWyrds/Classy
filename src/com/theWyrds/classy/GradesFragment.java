@@ -1,11 +1,12 @@
-package com.example.classy;
+package com.theWyrds.classy;
 
 import java.text.DecimalFormat;
 
-import com.example.classy.database.Db;
-import com.example.classy.database.DbContract;
-import com.example.classy.utilities.ClassyDate;
-import com.example.classy.utilities.ClassyTabFunctionality;
+import com.theWyrds.classy.R;
+import com.theWyrds.classy.database.Db;
+import com.theWyrds.classy.database.DbContract;
+import com.theWyrds.classy.utilities.ClassyDate;
+import com.theWyrds.classy.utilities.ClassyTabFunctionality;
 
 import android.app.ListFragment;
 import android.database.Cursor;

@@ -1,4 +1,4 @@
- package com.example.classy;
+ package com.theWyrds.classy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +23,17 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.classy.GradesDialogFragment.GradesDialogListener;
-import com.example.classy.HWDialogFragment.HWDialogListener;
-import com.example.classy.database.Db;
-import com.example.classy.database.DbContract;
-import com.example.classy.utilities.ClassyDate;
-import com.example.classy.utilities.ClassyHwReminder;
-import com.example.classy.utilities.ClassyTabFunctionality;
-import com.example.classy.utilities.NewClassDialog;
-import com.example.classy.utilities.NewClassDialog.NewClassDialogListener;
-import com.example.classy.utilities.TabListener;
+import com.theWyrds.classy.R;
+import com.theWyrds.classy.GradesDialogFragment.GradesDialogListener;
+import com.theWyrds.classy.HWDialogFragment.HWDialogListener;
+import com.theWyrds.classy.database.Db;
+import com.theWyrds.classy.database.DbContract;
+import com.theWyrds.classy.utilities.ClassyDate;
+import com.theWyrds.classy.utilities.ClassyHwReminder;
+import com.theWyrds.classy.utilities.ClassyTabFunctionality;
+import com.theWyrds.classy.utilities.NewClassDialog;
+import com.theWyrds.classy.utilities.TabListener;
+import com.theWyrds.classy.utilities.NewClassDialog.NewClassDialogListener;
 
 public class MainActivity extends Activity implements OnItemSelectedListener ,
 													  NewClassDialogListener ,

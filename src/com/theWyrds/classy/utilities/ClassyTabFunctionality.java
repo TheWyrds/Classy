@@ -1,4 +1,4 @@
-package com.example.classy.utilities;
+package com.theWyrds.classy.utilities;
 
 public interface ClassyTabFunctionality {
 

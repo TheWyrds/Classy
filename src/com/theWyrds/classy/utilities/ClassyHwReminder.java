@@ -1,4 +1,4 @@
-package com.example.classy.utilities;
+package com.theWyrds.classy.utilities;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -12,7 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.classy.R;
+import com.theWyrds.classy.R;
 
 /* See papers.ch/android-schedule-a-notification/ */
 
